@@ -1,0 +1,5 @@
+{
+    "port": 5000,
+    "mongodbUri": "mongodb://localhost:27017/bookReader"
+}
+  
