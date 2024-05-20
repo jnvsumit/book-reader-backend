@@ -4,6 +4,7 @@ interface IBook extends Document {
   title: string;
   author: string;
   pages: { number: number; content: string }[];
+  createdBy: string;
 }
 
 const pageSchema = new Schema({
@@ -14,7 +15,8 @@ const pageSchema = new Schema({
 const bookSchema = new Schema({
   title: { type: String, required: true },
   author: { type: String, required: true },
-  pages: [pageSchema]
+  pages: [pageSchema],
+  createdBy: { type: Schema.Types.ObjectId, ref: 'User', required: true }
 });
 
 const Book = model<IBook>('Book', bookSchema);

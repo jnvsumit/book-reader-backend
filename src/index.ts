@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import bookRoutes from './routes/bookRoutes';
 import donationRoutes from './routes/donationRoutes';
 import authRoutes from './routes/authRoutes';
+import uploadRoutes from './routes/uploadRoutes';
 import config from 'config';
 
 const app = express();
@@ -13,10 +14,12 @@ const MONGODB_URI = config.get<string>('mongodbUri');
 
 app.use(bodyParser.json());
 app.use(cors());
+app.use('/uploads', express.static('uploads'));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/books', bookRoutes);
 app.use('/api/donations', donationRoutes);
+app.use('/api/upload', uploadRoutes);
 
 mongoose.connect(MONGODB_URI)
   .then(() => {

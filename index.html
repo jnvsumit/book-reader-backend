@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Rich Text Editor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .toolbar {
+      display: flex;
+      border-bottom: 1px solid #ccc;
+      padding: 5px;
+    }
+    .toolbar button {
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 5px;
+      margin-right: 5px;
+      cursor: pointer;
+    }
+    .editor {
+      border: 1px solid #ccc;
+      padding: 10px;
+      min-height: 300px;
+    }
+    .editor img, .editor video {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button onclick="format('bold')"><b>B</b></button>
+  <button onclick="format('italic')"><i>I</i></button>
+  <button onclick="format('underline')"><u>U</u></button>
+  <button onclick="format('insertOrderedList')">OL</button>
+  <button onclick="format('insertUnorderedList')">UL</button>
+  <button onclick="format('formatBlock', 'H1')">H1</button>
+  <button onclick="format('formatBlock', 'H2')">H2</button>
+  <button onclick="format('insertImage', prompt('Enter image URL'))">Image</button>
+  <button onclick="format('insertHTML', '<video controls src=\'' + prompt('Enter video URL') + '\'></video>')">Video</button>
+  <button onclick="format('createLink', prompt('Enter URL'))">Link</button>
+</div>
+
+<div class="editor" contenteditable="true">
+  Start writing here...
+</div>
+
+<script>
+  function format(command, value) {
+    document.execCommand(command, false, value);
+  }
+</script>
+
+</body>
+</html>
