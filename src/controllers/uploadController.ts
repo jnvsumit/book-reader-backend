@@ -19,12 +19,12 @@ export const uploadFiles = (req: Request, res: Response) => {
     console.log(req.file, req.files);
     
     if (err) {
-      return res.status(500).json({ error: err.message });
+      return res.status(500).json({ message: err.message, error: { errorCode: "INTERNAL_SERVER_ERROR", message: err.message } });
     }
     if (!req.file) {
-      return res.status(400).json({ error: 'No file uploaded' });
+      return res.status(400).json({ message: 'No file uploaded', error: { errorCode: "BAD_REQUEST", message: 'No file uploaded' } });
     }
     const url = `/uploads/${req.file.filename}`;
-    res.status(200).json({ url });
+    res.status(200).json({ message: 'File uploaded', data: { url } });
   });
 };
